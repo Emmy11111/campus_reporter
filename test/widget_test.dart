@@ -1,30 +1,29 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
+import 'package:campus_reporter/core/utils/validators.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:campus_reporter/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('Validators', () {
+    test('email accepts a valid address', () {
+      expect(Validators.email('student@campus.edu'), isNull);
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    test('email rejects an invalid address', () {
+      expect(Validators.email('not-an-email'), isNotNull);
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    test('password requires at least six characters', () {
+      expect(Validators.password('12345'), isNotNull);
+      expect(Validators.password('123456'), isNull);
+    });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    test('confirmPassword detects a mismatch', () {
+      expect(Validators.confirmPassword('abc123', 'abc124'), isNotNull);
+      expect(Validators.confirmPassword('abc123', 'abc123'), isNull);
+    });
+
+    test('minLength enforces the minimum', () {
+      expect(Validators.minLength('abc', 'Title', 5), isNotNull);
+      expect(Validators.minLength('abcde', 'Title', 5), isNull);
+    });
   });
 }

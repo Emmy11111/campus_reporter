@@ -75,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 6),
                 const Text(
-                  'Students can report issues and follow their progress.',
+                  'Only ALU email addresses can create an account.',
                   style: TextStyle(color: AppTheme.textMuted),
                 ),
                 const SizedBox(height: 24),
@@ -104,10 +104,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  autofillHints: const [AutofillHints.email],
                   textInputAction: TextInputAction.next,
-                  validator: Validators.email,
+                  validator: Validators.aluEmail,
                   decoration: const InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'ALU email',
+                    hintText: 'name@alustudent.com',
                     prefixIcon: Icon(Icons.mail_outline_rounded),
                   ),
                 ),

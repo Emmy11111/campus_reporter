@@ -1,15 +1,36 @@
 {
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "campus-reporter-f7f4d",
+          "appId": "1:712618689113:android:e629578c75a3c086446748",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "campus-reporter-f7f4d",
+          "appId": "1:712618689113:ios:caf5c774a4de5413446748",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "campus-reporter-f7f4d",
+          "configurations": {
+            "android": "1:712618689113:android:e629578c75a3c086446748",
+            "ios": "1:712618689113:ios:caf5c774a4de5413446748"
+          }
+        }
+      }
+    }
+  },
+  "storage": { "rules": "storage.rules" },
   "emulators": {
-    "auth": {
-      "port": 9099
-    },
-    "storage": {
-      "port": 9199
-    },
-    "ui": {
-      "enabled": true,
-      "port": 4000
-    },
+    "storage": { "port": 9199 },
+    "ui": { "enabled": true, "port": 4000 },
     "singleProjectMode": true
   }
 }

@@ -36,4 +36,20 @@ class Validators {
     if (value != original) return 'Passwords do not match';
     return null;
   }
+
+    static const List<String> allowedEmailDomains = [
+    'alustudent.com',
+    'alueducation.com',
+  ];
+
+  static String? aluEmail(String? value) {
+    final baseError = email(value);
+    if (baseError != null) return baseError;
+
+    final domain = value!.trim().toLowerCase().split('@').last;
+    if (!allowedEmailDomains.contains(domain)) {
+      return 'Use your ALU email (@alustudent.com or @alueducation.com)';
+    }
+    return null;
+  }
 }
